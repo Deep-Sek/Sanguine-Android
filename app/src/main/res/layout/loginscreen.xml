@@ -75,6 +75,7 @@
         android:id="@+id/textView4"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:onClick="onForgetPass" />
+        android:onClick="onForgetPass"
+        android:textColor="#0000FF" />
 
 </RelativeLayout>
