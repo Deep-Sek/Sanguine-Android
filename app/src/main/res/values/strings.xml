@@ -60,4 +60,15 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_main">Sanguine</string>
     <string name="emptyString" />
+    <string name="title_activity_register">Register</string>
+    <string name="namedetail">Name</string>
+    <string name="emailiddetail">E-mail Address</string>
+    <string name="phonedetail">Phone Number</string>
+    <string name="usernamedetail">User Name</string>
+    <string name="passworddetail">Password</string>
+    <string name="repeatpassdetail">Repeat Password</string>
+    <string name="signupdetail">Sign Up</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>
