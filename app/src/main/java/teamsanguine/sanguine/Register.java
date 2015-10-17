@@ -44,6 +44,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 User user = new User(name, username, password, email, phone);
 
+                //Validation validation = new Validation();
+
+                String repeatpassword = etrepeatpass.getText().toString();
+                //validation.passwordMatch(user, repeatpassword);
+
                 registerUser(user);
                 break;
         }
