@@ -12,7 +12,7 @@ import android.widget.EditText;
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
     Button signup;
-    EditText etrepeatpass, etpassword, etusername, etphone, etemail, etname;
+    EditText etrepeatpass, etpassword, etusername, etphone, etemail, etname, etaddress1, etaddress2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         etname = (EditText) findViewById(R.id.etname);
         etpassword = (EditText) findViewById(R.id.etpassword);
         etrepeatpass = (EditText) findViewById(R.id.etrepeatpass);
+        etaddress1 = (EditText) findViewById(R.id.etaddress1);
+        etaddress2 = (EditText) findViewById(R.id.etaddress2);
         signup = (Button) findViewById(R.id.signup);
 
         signup.setOnClickListener(this);
@@ -40,14 +42,17 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 String username = etusername.getText().toString();
                 String email = etemail.getText().toString();
                 String password = etpassword.getText().toString();
+                String address1 = etaddress1.getText().toString();
+                String address2 = etaddress2.getText().toString();
                 int phone = Integer.parseInt(etphone.getText().toString());
 
-                User user = new User(name, username, password, email, phone);
+                User user = new User(name, username, password, email, phone, address1, address2);
 
                 //Validation validation = new Validation();
 
                 String repeatpassword = etrepeatpass.getText().toString();
-                //validation.passwordMatch(user, repeatpassword);
+                //boolean passcheck = validation.passwordMatch(user, repeatpassword);
+
 
                 registerUser(user);
                 break;
