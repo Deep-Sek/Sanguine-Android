@@ -26,7 +26,16 @@ public class loginscreen extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        startActivity(new Intent(this, Register.class));
+        switch(v.getId()){
+            case R.id.userCreate:
+                startActivity(new Intent(this, Register.class));
+                break;
+
+            case R.id.forgotpassword:
+                startActivity(new Intent(this, forgotpassword.class));
+                break;
+        }
+
     }
 
  /*   public void onLogIn(View v) {

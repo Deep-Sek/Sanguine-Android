@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Forgot password?"
-        android:id="@+id/textView4"
+        android:id="@+id/forgotpassword"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
         android:onClick="onForgetPass"

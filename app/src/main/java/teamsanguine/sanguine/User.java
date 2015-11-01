@@ -5,9 +5,10 @@ package teamsanguine.sanguine;
  */
 public class User {
     String name, username, password, email, address1, address2;
-    int phone, type;
+    long phone;
+    int type;
 
-    public User(String name, String username, String password, String email, int phone, String address1, String address2){
+    public User(String name, String username, String password, String email, long phone, String address1, String address2){
         this.name = name;
         this.username = username;
         this.password = password;
