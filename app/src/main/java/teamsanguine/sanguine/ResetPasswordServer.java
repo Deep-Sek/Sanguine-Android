@@ -14,12 +14,13 @@ import java.net.URLEncoder;
 /**
  * Created by Deepan on 11/3/2015.
  */
-public class SendEmail {
+public class ResetPasswordServer {
+
     ProgressDialog progressDialog;
     public static final int CONNECTION_TIMEOUT = 1000 * 15;
     public static final String SERVER_ADDRESS = "http://deepan.netai.net/";
 
-    public SendEmail(Context context){
+    public ResetPasswordServer(Context context){
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setCancelable(false);
@@ -27,20 +28,20 @@ public class SendEmail {
         progressDialog.setMessage("Please wait...");
     }
 
-    public void storeUserDataInBackground(String username, String email, GetUserCallback userCallback){
+    public void storeUserDataInBackground(String onetimepass, String newpass, GetUserCallback userCallback){
         progressDialog.show();
-        new StoreUserDataAsyncTask(username, email, userCallback).execute();
+        new StoreUserDataAsyncTask(onetimepass, newpass, userCallback).execute();
 
     }
 
     public class StoreUserDataAsyncTask extends AsyncTask<Void, Void, Void> {
-        String email;
-        String username;
+        String onetimepass;
+        String newpass;
         GetUserCallback userCallback;
 
-        public StoreUserDataAsyncTask(String username, String email, GetUserCallback userCallback) {
-            this.username = username;
-            this.email = email;
+        public StoreUserDataAsyncTask(String onetimepass, String newpass, GetUserCallback userCallback) {
+            this.onetimepass = onetimepass;
+            this.newpass = newpass;
             this.userCallback = userCallback;
         }
 
@@ -60,13 +61,13 @@ public class SendEmail {
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
 
                 StringBuilder sb = new StringBuilder();
-                sb.append(URLEncoder.encode("username", "UTF-8"));
+                sb.append(URLEncoder.encode("onetimepassword", "UTF-8"));
                 sb.append("=");
-                sb.append(URLEncoder.encode(username, "UTF-8"));
+                sb.append(URLEncoder.encode(onetimepass, "UTF-8"));
                 sb.append("&");
-                sb.append(URLEncoder.encode("email", "UTF-8"));
+                sb.append(URLEncoder.encode("newpassword", "UTF-8"));
                 sb.append("=");
-                sb.append(URLEncoder.encode(email, "UTF-8"));
+                sb.append(URLEncoder.encode(newpass, "UTF-8"));
 
                 writer.write(sb.toString());
                 writer.flush();
