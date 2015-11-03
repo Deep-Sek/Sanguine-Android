@@ -13,38 +13,32 @@ import android.widget.Toast;
 public class loginscreen extends AppCompatActivity implements View.OnClickListener {
 
     Button hello;
+    TextView forgetpassword;
 
     protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.loginscreen);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.loginscreen);
 
-            hello = (Button) findViewById(R.id.userCreate);
-            hello.setOnClickListener(this);
+        hello = (Button) findViewById(R.id.userCreate);
+        hello.setOnClickListener(this);
 
-            //Toast.makeText(getApplicationContext(), "Login Screen", Toast.LENGTH_LONG).show();
-        }
+        forgetpassword = (TextView) findViewById(R.id.forgotpassword);
+        forgetpassword.setOnClickListener(this);
+        //Toast.makeText(getApplicationContext(), "Login Screen", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.userCreate:
                 startActivity(new Intent(this, Register.class));
                 break;
 
             case R.id.forgotpassword:
-                startActivity(new Intent(this, forgotpassword.class));
+                startActivity(new Intent(this, ForgotPassword.class));
                 break;
         }
 
     }
 
- /*   public void onLogIn(View v) {
-            if (v.getId() == R.id.homeScreen) {
-                EditText a = (EditText) findViewById(R.id.TFusername);
-                String str = a.getText().toString();
-                Intent i = new Intent(loginscreen.this, welcomescreen.class);
-                i.putExtra("Username", str);
-                startActivity(i);
-            }
-        }*/
-        }
+}

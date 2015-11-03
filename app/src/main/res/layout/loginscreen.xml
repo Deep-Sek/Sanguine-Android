@@ -74,7 +74,6 @@
         android:id="@+id/forgotpassword"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:onClick="onForgetPass"
         android:textColor="#0000FF" />
 
 </RelativeLayout>
