@@ -53,14 +53,6 @@ public class ServerRequests {
         @Override
         protected Void doInBackground(Void... params) {
 
-            ContentValues dataToSend = new ContentValues();
-            dataToSend.put("name", user.name);
-            dataToSend.put("username", user.username);
-            dataToSend.put("email", user.email);
-            dataToSend.put("password", user.password);
-            dataToSend.put("phone", user.phone);
-            dataToSend.put("type", 1);
-
             HttpURLConnection urlConnection = null;
 
             try{
@@ -115,7 +107,6 @@ public class ServerRequests {
             } catch (Exception e){
                 e.printStackTrace();
             }
-
             return null;
         }
 

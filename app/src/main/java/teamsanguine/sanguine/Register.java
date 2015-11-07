@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -109,6 +110,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         serverRequests.storeUserDataInBackground(user, new GetUserCallback() {
             @Override
             public void done(User returnedUser) {
+                //Toast.makeText(getApplicationContext(), "Your Location", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Register.this, MainActivity.class));
             }
         });

@@ -50,7 +50,7 @@ public class SendEmail {
             HttpURLConnection urlConnection = null;
 
             try{
-                URL url = new URL("http://10.0.2.2:8080/postdetails.php");
+                URL url = new URL("http://10.0.2.2:8080/forgotpassword.php");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                 urlConnection.setDoOutput(true);
