@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ import java.util.TimerTask;
 
 public class MainActivity extends Activity {
     GPSManager gps;
+    UserLocalStore userLocalStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,6 @@ public class MainActivity extends Activity {
                 startActivity(homepage);
             }
         }, timeout);*/
-
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +65,26 @@ public class MainActivity extends Activity {
 
 
         });
+        if(authenticate() == true){
+            //go to the profile page directly.. using register page temporarily
+            startActivity(new Intent(MainActivity.this, Register.class));
+            Log.d("tag", "verifiedchecked");
+            finish();
+        }else {
+            //go to login page
+            startActivity(new Intent(MainActivity.this, loginscreen.class));
+            Log.d("tag", "verifiednotchecked");
+            finish();
+        }
 
-        Intent homepage = new Intent(MainActivity.this, loginscreen.class);
-        startActivity(homepage);
-        finish();
+        //Intent homepage = new Intent(MainActivity.this, loginscreen.class);
+        //startActivity(homepage);
+        //finish();
         //gps.stopUsingGPS();
     }
 
-
-
+    private boolean authenticate(){
+        userLocalStore = new UserLocalStore(this);
+        return userLocalStore.getUserLoggedIn();
+    }
 }

@@ -8,8 +8,16 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.provider.Settings;
+import android.util.Log;
+import android.widget.Toast;
 
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -38,7 +46,11 @@ public class ServerRequests {
     public void storeUserDataInBackground(User user, GetUserCallback userCallback){
         progressDialog.show();
         new StoreUserDataAsyncTask(user, userCallback).execute();
+    }
 
+    public void fetchUserDataInBackground(User user, GetUserCallback callBack){
+        progressDialog.show();
+        new FetchUserDataAsyncTask(user, callBack).execute();
     }
 
     public class StoreUserDataAsyncTask extends AsyncTask<Void, Void, Void> {
@@ -116,6 +128,92 @@ public class ServerRequests {
             progressDialog.dismiss();
             userCallback.done(null);
             super.onPostExecute(aVoid);
+        }
+    }
+    public class FetchUserDataAsyncTask extends AsyncTask<Void, Void, User> {
+        User user;
+        GetUserCallback userCallback;
+
+        public FetchUserDataAsyncTask(User user, GetUserCallback userCallback) {
+            this.user = user;
+            this.userCallback = userCallback;
+        }
+
+        @Override
+        protected User doInBackground(Void... params) {
+            HttpURLConnection urlConnection = null;
+            User returnedUser = null;
+
+            try{
+                URL url = new URL("http://10.0.2.2:8080/fetchdetails.php");
+                urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
+                urlConnection.setDoOutput(true);
+                urlConnection.setChunkedStreamingMode(0);
+
+                urlConnection.setRequestMethod("POST");
+                urlConnection.setDoInput(true);
+
+                OutputStream os = urlConnection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+
+                StringBuilder sb = new StringBuilder();
+                sb.append(URLEncoder.encode("Username", "UTF-8"));
+                sb.append("=");
+                sb.append(URLEncoder.encode(user.username, "UTF-8"));
+                sb.append("&");
+                sb.append(URLEncoder.encode("Password", "UTF-8"));
+                sb.append("=");
+                sb.append(URLEncoder.encode(user.password, "UTF-8"));
+
+                writer.write(sb.toString());
+                writer.flush();
+                writer.close();
+                os.close();
+
+                InputStream is = urlConnection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+                StringBuilder buffer = new StringBuilder();
+
+                String inputStr = "";
+                while ((inputStr = reader.readLine()) != null)
+                    buffer.append(inputStr);
+
+                String finalJson = buffer.toString();
+                Log.d("tag", finalJson);
+                String json = finalJson.substring(finalJson.indexOf("{"), finalJson.lastIndexOf("}") + 1);
+
+                JSONObject jObject = new JSONObject(json);
+
+                if(jObject.length() == 0){
+                    returnedUser = null;
+                } else{
+                    String name = jObject.getString("Name");
+                    String email = jObject.getString("Email");
+                    long phone = jObject.getLong("Phone");
+                    String address1 = jObject.getString("Address1");
+                    String address2 = jObject.getString("Address2");
+
+                    returnedUser = new User(name, user.username, user.password, email, phone, address1, address2);
+                }
+
+                reader.close();
+                is.close();
+                urlConnection.disconnect();
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+            return returnedUser;
+        }
+
+        @Override
+        protected void onPostExecute(User returnedUser) {
+
+            progressDialog.dismiss();
+            userCallback.done(returnedUser);
+            super.onPostExecute(returnedUser);
         }
     }
 }

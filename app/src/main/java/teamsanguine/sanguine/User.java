@@ -18,5 +18,10 @@ public class User {
         this.address1 = address1;
         this.address2 = address2;
     }
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 }
 
