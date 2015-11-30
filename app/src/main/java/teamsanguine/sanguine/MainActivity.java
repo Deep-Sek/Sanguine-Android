@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        getRegId();
         //setSupportActionBar(toolbar);
        // int timeout = 4000; // make the activity visible for 4 seconds
 
@@ -93,6 +94,7 @@ public class MainActivity extends Activity {
         //startActivity(homepage);
         //finish();
         //gps.stopUsingGPS();
+
     }
 
     private boolean authenticate(){
@@ -104,10 +106,10 @@ public class MainActivity extends Activity {
         GoogleCloudMessaging gcmObj;
         // Check if Google Play Service is installed in Device
         // Play services is needed to handle GCM stuffs
-        if (checkPlayServices()) {
+        //if (checkPlayServices()) {
             // Register Device in GCM Server
             getTokenInBackground();
-        }
+       // }
     }
 
     /**
@@ -139,9 +141,9 @@ public class MainActivity extends Activity {
             protected String doInBackground(Void... params) {
                 String token;
                 try {
-                    //TODO: get Project number from global variable
+                    
                     InstanceID instanceID = InstanceID.getInstance(getApplicationContext());
-                    token = instanceID.getToken("845607826709", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
+                    token = instanceID.getToken("7994807303", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 } catch (final IOException e) {
                     token = "Error :" + e.getMessage();
                 }
@@ -166,9 +168,9 @@ public class MainActivity extends Activity {
                 try {
                     StringBuilder urlString = new StringBuilder();
                     String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
-                    //TODO: Store the Server IP in global locaiton
-                    urlString.append("http://54.210.175.98:9080//api/GCM/addGCMRegkeySanguine?");
-                    urlString.append("RegKey=").append(token);
+                    //http://localhost/Sanguine-Web/regGCMToken.php?DeviceId=A123324&GCMRegToken=23343
+                    urlString.append("http://10.0.2.2/Sanguine-Web/regGCMToken.php?");
+                    urlString.append("GCMRegToken=").append(token);
                     urlString.append("&DeviceId=").append( android_id );
 
                     URL url = new URL(urlString.toString());
