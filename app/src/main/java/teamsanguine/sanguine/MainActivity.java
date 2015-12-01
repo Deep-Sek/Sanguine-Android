@@ -141,7 +141,7 @@ public class MainActivity extends Activity {
             protected String doInBackground(Void... params) {
                 String token;
                 try {
-                    
+
                     InstanceID instanceID = InstanceID.getInstance(getApplicationContext());
                     token = instanceID.getToken("7994807303", GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 } catch (final IOException e) {
@@ -169,7 +169,7 @@ public class MainActivity extends Activity {
                     StringBuilder urlString = new StringBuilder();
                     String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
                     //http://localhost/Sanguine-Web/regGCMToken.php?DeviceId=A123324&GCMRegToken=23343
-                    urlString.append("http://10.0.2.2/Sanguine-Web/regGCMToken.php?");
+                    urlString.append("http://192.168.0.102/Sanguine-Web/regGCMToken.php?");
                     urlString.append("GCMRegToken=").append(token);
                     urlString.append("&DeviceId=").append( android_id );
 

@@ -26,6 +26,7 @@ public class GCMService extends GcmListenerService {
     @Override
     public void onMessageReceived(String from, Bundle data) {
         sendNotification(data.getString("gcm.notification.body"));
+        //Log.e("OnReceived","test123");
     }
 
 
@@ -33,13 +34,13 @@ public class GCMService extends GcmListenerService {
     // This is just one simple example of what you might choose to do with
     // a GCM message.
     private void sendNotification(String msg) {
-         Toast.makeText(getApplicationContext(), "Message:" + msg, Toast.LENGTH_SHORT).show();
+
         //Log.d("GCMMessage", msg);
 
-        /*
+
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.sanguine_icon)
+                        .setSmallIcon(R.mipmap.sanguinelogo)
                         .setContentTitle("Sanguine")
                         .setContentText(msg);
         // Creates an explicit intent for an Activity in your app
@@ -62,7 +63,7 @@ public class GCMService extends GcmListenerService {
         Random random = new Random();
         int msgId = random.nextInt(9999 - 1000) + 1000;
         mNotificationManager.notify(msgId, mBuilder.build());
-*/
+
     }
 
 }
