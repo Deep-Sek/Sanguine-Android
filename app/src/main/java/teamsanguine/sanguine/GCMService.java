@@ -25,8 +25,9 @@ public class GCMService extends GcmListenerService {
 
     @Override
     public void onMessageReceived(String from, Bundle data) {
-        sendNotification(data.getString("gcm.notification.body"));
-        //Log.e("OnReceived","test123");
+        sendNotification(data.getString("messageBody"));
+
+       // Log.e("OnReceived1", data.toString().getJSONObject("messageBody"));
     }
 
 
