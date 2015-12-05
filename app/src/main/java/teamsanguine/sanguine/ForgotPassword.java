@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
+
 public class ForgotPassword extends AppCompatActivity implements View.OnClickListener {
 
     Button send;
@@ -64,6 +66,12 @@ public class ForgotPassword extends AppCompatActivity implements View.OnClickLis
             @Override
             public void done(User returnedUser) {
                 startActivity(new Intent(ForgotPassword.this, ResetPassword.class));
+                finish();
+            }
+
+            @Override
+            public void done1(donationdetail[] donations1) {
+
             }
         });
     }

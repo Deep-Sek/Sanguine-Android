@@ -115,6 +115,7 @@ public class ServerRequests {
                 writer.close();
                 os.close();
                 urlConnection.disconnect();
+                Log.d("fls","ksdf");
 
             } catch (Exception e){
                 e.printStackTrace();
@@ -130,6 +131,7 @@ public class ServerRequests {
             super.onPostExecute(aVoid);
         }
     }
+
     public class FetchUserDataAsyncTask extends AsyncTask<Void, Void, User> {
         User user;
         GetUserCallback userCallback;
@@ -181,6 +183,7 @@ public class ServerRequests {
 
                 String finalJson = buffer.toString();
                 Log.d("tag", finalJson);
+                Log.d("jksdj","sjdf");
                 String json = finalJson.substring(finalJson.indexOf("{"), finalJson.lastIndexOf("}") + 1);
 
                 JSONObject jObject = new JSONObject(json);

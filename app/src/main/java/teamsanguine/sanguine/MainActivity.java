@@ -65,9 +65,10 @@ public class MainActivity extends Activity {
 
 
         });
+
         if(authenticate() == true){
             //go to the profile page directly.. using register page temporarily
-            startActivity(new Intent(MainActivity.this, Register.class));
+            startActivity(new Intent(MainActivity.this, DonationHistory.class));
             Log.d("tag", "verifiedchecked");
             finish();
         }else {
@@ -85,6 +86,7 @@ public class MainActivity extends Activity {
 
     private boolean authenticate(){
         userLocalStore = new UserLocalStore(this);
+       // userLocalStore.clearUserData();
         return userLocalStore.getUserLoggedIn();
     }
 }

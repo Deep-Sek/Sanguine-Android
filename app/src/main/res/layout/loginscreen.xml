@@ -38,15 +38,6 @@
         android:layout_marginTop="44dp"
         android:hint="......" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Up"
-        android:id="@+id/userCreate"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView2" />
-
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,20 +51,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="New user?"
-        android:id="@+id/textView2"
-        android:layout_alignBaseline="@+id/userCreate"
-        android:layout_alignBottom="@+id/userCreate"
-        android:layout_alignParentStart="true" />
+        android:text="Forgot password?"
+        android:id="@+id/forgotpassword"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#0000FF" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Forgot password?"
-        android:id="@+id/forgotpassword"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
+        android:text="New to Sanguine?      "
+        android:id="@+id/textView14"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/homeScreen"
+        android:layout_alignEnd="@+id/checkBox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Sign up!"
+        android:id="@+id/registerlink"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14"
         android:textColor="#0000FF" />
 
 </RelativeLayout>

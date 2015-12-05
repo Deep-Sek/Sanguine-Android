@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
+
 public class ResetPassword extends AppCompatActivity implements View.OnClickListener {
 
     Button resetpass;
@@ -56,6 +58,12 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
             @Override
             public void done(User returnedUser) {
                 startActivity(new Intent(ResetPassword.this, loginscreen.class));
+                finish();
+            }
+
+            @Override
+            public void done1(donationdetail[] donations1) {
+
             }
         });
     }

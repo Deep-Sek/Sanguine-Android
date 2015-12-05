@@ -3,12 +3,15 @@ package teamsanguine.sanguine;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONArray;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,6 +41,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.signup:
+                Log.d("fls", "1");
 
                 String name = etname.getText().toString();
                 String username = etusername.getText().toString();
@@ -112,7 +116,14 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             public void done(User returnedUser) {
                 //Toast.makeText(getApplicationContext(), "Your Location", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(Register.this, MainActivity.class));
+                finish();
             }
+
+            @Override
+            public void done1(donationdetail[] donations1) {
+
+            }
+
         });
     }
 }

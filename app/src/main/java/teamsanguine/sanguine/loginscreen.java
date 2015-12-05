@@ -1,7 +1,10 @@
 package teamsanguine.sanguine;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,10 +16,12 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 public class loginscreen extends AppCompatActivity implements View.OnClickListener {
 
     Button hello, login;
-    TextView forgetpassword;
+    TextView forgetpassword, signup;
     EditText etUsername, etPassword;
     UserLocalStore userLocalStore;
     CheckBox checkBox;
@@ -25,11 +30,13 @@ public class loginscreen extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginscreen);
 
-        hello = (Button) findViewById(R.id.userCreate);
-        hello.setOnClickListener(this);
+        //hello = (Button) findViewById(R.id.userCreate);
+        //hello.setOnClickListener(this);
 
         forgetpassword = (TextView) findViewById(R.id.forgotpassword);
         forgetpassword.setOnClickListener(this);
+        signup = (TextView) findViewById(R.id.registerlink);
+        signup.setOnClickListener(this);
         //Toast.makeText(getApplicationContext(), "Login Screen", Toast.LENGTH_LONG).show();
 
         etUsername = (EditText) findViewById(R.id.TFusername);
@@ -43,12 +50,14 @@ public class loginscreen extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.userCreate:
+            case R.id.registerlink:
                 startActivity(new Intent(this, Register.class));
+                finish();
                 break;
 
             case R.id.forgotpassword:
                 startActivity(new Intent(this, ForgotPassword.class));
+                finish();
                 break;
 
             case R.id.homeScreen:
@@ -73,6 +82,12 @@ public class loginscreen extends AppCompatActivity implements View.OnClickListen
                     logUserIn(returnedUser);
                 }
             }
+
+            @Override
+            public void done1(donationdetail[] donations1) {
+
+            }
+
         });
     }
 
@@ -94,6 +109,7 @@ public class loginscreen extends AppCompatActivity implements View.OnClickListen
             Log.d("tag1", "checked");
         }
         //should go to the profile page but going ot the register page temporarily
-        startActivity(new Intent(this, Register.class));
+        startActivity(new Intent(this, DonationHistory.class));
+        finish();
     }
 }
