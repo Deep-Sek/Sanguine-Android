@@ -78,7 +78,7 @@ public class DonationHistory extends AppCompatActivity {
         Log.d("tag1", user.username);
 
         grabHistroy(user.username);
-        for(double i = 0; i < 999999990; i++) {
+        for(double i = 0; i < 99999999; i++) {
         }
         Log.d("taged1", donations[0].getDate());
 
