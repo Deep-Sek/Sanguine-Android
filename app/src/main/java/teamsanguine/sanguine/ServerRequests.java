@@ -68,7 +68,7 @@ public class ServerRequests {
             HttpURLConnection urlConnection = null;
 
             try{
-                URL url = new URL("http://10.0.2.2:8080/postdetails.php");
+                URL url = new URL("http://10.0.2.2/Sanguine-Web/postdetails.php");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                 urlConnection.setDoOutput(true);
@@ -147,7 +147,7 @@ public class ServerRequests {
             User returnedUser = null;
 
             try{
-                URL url = new URL("http://10.0.2.2:8080/fetchdetails.php");
+                URL url = new URL("http://10.0.2.2/Sanguine-Web/fetchdetails.php");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                 urlConnection.setDoOutput(true);

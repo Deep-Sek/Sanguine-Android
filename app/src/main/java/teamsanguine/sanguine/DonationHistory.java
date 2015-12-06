@@ -180,7 +180,7 @@ public class DonationHistory extends AppCompatActivity {
                 HttpURLConnection urlConnection = null;
 
                 try{
-                    URL url = new URL("http://10.0.2.2:8080/donation.php");
+                    URL url = new URL("http://10.0.2.2/Sanguine-Web/donation_Mobile.php");
                     urlConnection = (HttpURLConnection) url.openConnection();
                     urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
                     urlConnection.setDoOutput(true);
